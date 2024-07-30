@@ -7,6 +7,14 @@ const correctSound = new Howl({
     src: ['wrong.mp3']
   });
 
+const keyboardSound = new Howl({
+  src: ['click.mp3']
+});
+
+keyboardSound.once('load', function(){
+  console.log('Keyboard sound loaded successfully');
+});
+
   correctSound.once('load', function(){
     console.log('Correct sound loaded successfully');
   });
@@ -51,6 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         virtualKeyboard.addEventListener('click', function(event) {
             if (event.target.tagName === 'BUTTON') {
+                 keyboardSound.play();
                 const value = event.target.getAttribute('data-value');
                  
                 switch(value) {
@@ -81,6 +90,11 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             console.error("Answer input element not found!");
         }
+
+     document.addEventListener('touchstart', function() {
+    keyboardSound.load();
+  }, {once: true});
+    
     });
 
 function showQuestion() {
