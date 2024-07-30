@@ -186,3 +186,22 @@ body {
   border: none;
   cursor: pointer;
 }
+
+    .feedback-message {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+    background-color: #f0f0f0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* הגדלת הגודל עוד יותר במסכים קטנים */
+@media (max-width: 600px) {
+    .feedback-message {
+        font-size: 28px;
+        padding: 20px;
+    }
+}
