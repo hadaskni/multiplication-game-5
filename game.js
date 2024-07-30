@@ -287,26 +287,18 @@ document.addEventListener('touchstart', function() {
       }
     }, {once: true});
 
-      // פונקציות עזר
+// פונקציות עזר
 function addNumber(num) {
     console.log("Adding number:", num);
     const answerInput = document.getElementById('answer-input');
     answerInput.value += num;
     console.log("Current input value:", answerInput.value);
 }
-  
-  function clearAnswer() {
+
+function clearAnswer() {
     console.log("Clearing answer");
     const answerInput = document.getElementById('answer-input');
     answerInput.value = '';
-}
-
-function addNumber(num) {
-  document.getElementById('answer-input').value += num;
-}
-
-function clearAnswer() {
-  document.getElementById('answer-input').value = '';
 }
 
 function showVirtualKeyboard() {
