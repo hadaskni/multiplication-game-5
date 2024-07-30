@@ -103,6 +103,7 @@ function startGame() {
 }
 
 function submitAnswer() {
+    console.log("Submitting answer");
       const answerInput = document.getElementById('answer-input');
       const answer = answerInput.value;
       if (currentQuestion < multiplicationTable.length) {
@@ -286,13 +287,19 @@ document.addEventListener('touchstart', function() {
       }
     }, {once: true});
 
-  function addNumber(num) {
-    document.getElementById('answer-input').value += num;
-  }
+      // פונקציות עזר
+function addNumber(num) {
+    console.log("Adding number:", num);
+    const answerInput = document.getElementById('answer-input');
+    answerInput.value += num;
+    console.log("Current input value:", answerInput.value);
+}
   
   function clearAnswer() {
-    document.getElementById('answer-input').value = '';
-  }
+    console.log("Clearing answer");
+    const answerInput = document.getElementById('answer-input');
+    answerInput.value = '';
+}
 
 function addNumber(num) {
   document.getElementById('answer-input').value += num;
