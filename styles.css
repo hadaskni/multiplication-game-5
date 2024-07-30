@@ -98,26 +98,27 @@ body {
       font-size: 16px;
     }
 
-   #virtual-keyboard {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-top: 20px;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background-color: #f0f0f0;
-      padding: 10px;
-      box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
-    }
-
+  #virtual-keyboard {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #f0f0f0;
+    padding: 10px;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+  }
+  
   @media (min-width: 601px) {
     #virtual-keyboard {
-      display: none;
+      display: none !important;
     }
-    }
-  
+  }
+    
     #virtual-keyboard button {
       font-size: 20px;
       padding: 10px;
