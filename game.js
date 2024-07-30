@@ -201,7 +201,7 @@ function displayMessage(message, isFlashcard = false) {
             contentElement.style.fontSize = `${fontSize}px`;
         }, 0);
     } else {
-        messageElement.classList.add('message');
+        messageElement.classList.add('message',  'feedback-message');
         messageElement.textContent = message;
     }
     
