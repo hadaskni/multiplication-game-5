@@ -232,12 +232,18 @@ function showIntermediateQuestion(questions, index, repetition = 0) {
         if (repetition < 3) {
             displayMessage(`${question.question} = ${question.answer}`, true);
             setTimeout(() => {
-                showIntermediateQuestion(questions, index, repetition + 1);
-            }, 2000); // מציג כל חזרה למשך 2 שניות
+                // מסתיר את השאלה לחצי שנייה
+                displayMessage("", true);
+                setTimeout(() => {
+                    // קורא לפונקציה שוב אחרי חצי שנייה
+                    showIntermediateQuestion(questions, index, repetition + 1);
+                }, 500);
+            }, 3000); // מציג כל חזרה למשך 3 שניות
         } else {
+            // עובר לשאלה הבאה
             setTimeout(() => {
                 showIntermediateQuestion(questions, index + 1, 0);
-            }, 1000); // עובר לשאלה הבאה אחרי שנייה
+            }, 500);
         }
     } else {
         displayMessage("סיימנו את שלב הביניים. עוברים לשלב האחרון.");
