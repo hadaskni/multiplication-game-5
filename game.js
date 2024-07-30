@@ -11,6 +11,8 @@ const keyboardSound = new Howl({
   src: ['click.mp3']
 });
 
+const QUESTION_TIME = 10000; // 10 שניות לכל שאלה
+
 keyboardSound.once('load', function(){
   console.log('Keyboard sound loaded successfully');
 });
@@ -97,17 +99,23 @@ document.addEventListener('DOMContentLoaded', function() {
     
     });
 
+let timer;
+
 function showQuestion() {
     console.log("Showing question, current question:", currentQuestion);
     if (currentQuestion < multiplicationTable.length) {
         const question = multiplicationTable[currentQuestion].question;
-        // פיצול התרגיל למרכיביו
         const [num1, operator, num2] = question.split(' ');
-        // יצירת מחרוזת HTML עם הסדר הנכון
         const formattedQuestion = `<span class="number">${num1}</span> <span class="operator">${operator}</span> <span class="number">${num2}</span>`;
         displayMessage(formattedQuestion, true);
         document.getElementById('input-container').style.display = 'flex';
         setTimeout(() => document.getElementById('answer-input').focus(), 0);
+        
+        // הוספת טיימר
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            submitAnswer();
+        }, QUESTION_TIME);
     } else {
         startIntermediatePhase();
     }
@@ -121,7 +129,7 @@ function showQuestion() {
           while (flashcardContent.scrollWidth > flashcard.offsetWidth || flashcardContent.scrollHeight > flashcard.offsetHeight) {
             fontSize--;
             flashcardContent.style.fontSize = `${fontSize}px`;
-            if (fontSize <= 12) break; // מניעת הקטנה מוגזמת של הפונט
+            if (fontSize <= 12) break;
           }
         }
       }, 0);
@@ -149,17 +157,17 @@ function startGame() {
 
 function submitAnswer() {
     console.log("Submitting answer");
-      const answerInput = document.getElementById('answer-input');
-      const answer = answerInput.value;
-      if (currentQuestion < multiplicationTable.length) {
+    clearTimeout(timer);
+    const answerInput = document.getElementById('answer-input');
+    const answer = answerInput.value;
+    if (currentQuestion < multiplicationTable.length) {
         checkAnswer(answer);
-      } else {
+    } else {
         checkWrongAnswer(answer);
-      }
-      answerInput.value = '';
-      // הסרנו את הפוקוס מה-input כדי למנוע את הופעת המקלדת של המכשיר
-      answerInput.blur();
     }
+    answerInput.value = '';
+    answerInput.blur();
+}
 
 function handleEnterKey(event) {
     if (event.key === 'Enter') {
@@ -290,6 +298,12 @@ function showWrongQuestion() {
         displayMessage(question, true);
         document.getElementById('input-container').style.display = 'flex';
         document.getElementById('answer-input').focus();
+        
+        // הוספת טיימר
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            submitAnswer();
+        }, QUESTION_TIME);
     } else {
         displayMessage("סיימנו את כל סבבי התרגול. המשחק הסתיים.");
         document.getElementById('input-container').style.display = 'none';
