@@ -23,6 +23,12 @@ let wrongAnswersQueue = [];
 
 document.addEventListener('DOMContentLoaded', function() {
     startGame();
+
+        // מונע את הופעת המקלדת של המכשיר כאשר לוחצים על ה-input
+    document.getElementById('answer-input').addEventListener('focus', function(e) {
+        e.preventDefault();
+        this.blur();
+    });
 });
 
 function showQuestion() {
@@ -75,16 +81,17 @@ function startGame() {
 }
 
 function submitAnswer() {
-    const answerInput = document.getElementById('answer-input');
-    const answer = answerInput.value;
-    if (currentQuestion < multiplicationTable.length) {
+      const answerInput = document.getElementById('answer-input');
+      const answer = answerInput.value;
+      if (currentQuestion < multiplicationTable.length) {
         checkAnswer(answer);
-    } else {
+      } else {
         checkWrongAnswer(answer);
+      }
+      answerInput.value = '';
+      // הסרנו את הפוקוס מה-input כדי למנוע את הופעת המקלדת של המכשיר
+      answerInput.blur();
     }
-    answerInput.value = '';
-    setTimeout(() => answerInput.focus(), 0);
-}
 
 function handleEnterKey(event) {
     if (event.key === 'Enter') {
