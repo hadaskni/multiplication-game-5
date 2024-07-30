@@ -11,7 +11,7 @@ const keyboardSound = new Howl({
   src: ['click.mp3']
 });
 
-const QUESTION_TIME = 10000; // 10 שניות לכל שאלה
+const QUESTION_TIME = 6000; // 6 שניות לכל שאלה
 
 keyboardSound.once('load', function(){
   console.log('Keyboard sound loaded successfully');
