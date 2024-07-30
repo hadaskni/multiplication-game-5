@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error("Virtual keyboard element not found!");
     }
     
-        startGame();
+    startGame();
 
     // מונע את הופעת המקלדת של המכשיר כאשר לוחצים על ה-input
        const answerInput = document.getElementById('answer-input');
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             console.error("Answer input element not found!");
         }
-    });
+        });
 
 function showQuestion() {
     console.log("Showing question, current question:", currentQuestion);
