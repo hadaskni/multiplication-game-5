@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>משחק לוח הכפל</title>
+    <link rel="stylesheet" href="styles.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+
+</head>
+<body>
+
+    <div id="game-area"></div>
+
+    <div id="input-container" class="centered-container">
+        <input type="text" id="answer-input" class="large-input" placeholder="הקלד תשובה">
+        <button onclick="submitAnswer()" class="large-button">שלח</button>
+    </div>
+
+    <div id="virtual-keyboard">
+        <button onclick="addNumber(1)">1</button>
+        <button onclick="addNumber(2)">2</button>
+        <button onclick="addNumber(3)">3</button>
+        <button onclick="addNumber(4)">4</button>
+        <button onclick="addNumber(5)">5</button>
+        <button onclick="addNumber(6)">6</button>
+        <button onclick="addNumber(7)">7</button>
+        <button onclick="addNumber(8)">8</button>
+        <button onclick="addNumber(9)">9</button>
+        <button onclick="addNumber(0)">0</button>
+        <button onclick="clearAnswer()">מחק</button>
+      </div>
+
+    <button onclick="startGame()" class="restart-button">התחל משחק מחדש</button>
+
+    <script src="game.js"></script>
+</body>
+</html>
