@@ -82,7 +82,6 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error("Answer input element not found!");
         }
     });
-});
 
 function showQuestion() {
     console.log("Showing question, current question:", currentQuestion);
