@@ -295,9 +295,28 @@ function showVirtualKeyboard() {
 }
 
 // קריאה לפונקציה בטעינת הדף ובשינוי גודל החלון
-window.addEventListener('load', showVirtualKeyboard);
+window.addEventListener('load', function() {
+    console.log("Window loaded");
+    const virtualKeyboard = document.getElementById('virtual-keyboard');
+    console.log("Virtual keyboard element after load:", virtualKeyboard);
+    console.log("Virtual keyboard display after load:", window.getComputedStyle(virtualKeyboard).display);
+    console.log("Window inner width:", window.innerWidth);
+    
+    showVirtualKeyboard();
+    
+    console.log("addNumber function:", typeof addNumber);
+    console.log("clearAnswer function:", typeof clearAnswer);
+    console.log("submitAnswer function:", typeof submitAnswer);
+});
+
 window.addEventListener('resize', showVirtualKeyboard);
 
-console.log("addNumber function:", typeof addNumber);
-console.log("clearAnswer function:", typeof clearAnswer);
-console.log("submitAnswer function:", typeof submitAnswer);
+function showVirtualKeyboard() {
+    const virtualKeyboard = document.getElementById('virtual-keyboard');
+    if (window.innerWidth <= 600) {
+        virtualKeyboard.style.display = 'grid';
+    } else {
+        virtualKeyboard.style.display = 'none';
+    }
+    console.log("Virtual keyboard display after showVirtualKeyboard:", virtualKeyboard.style.display);
+}
