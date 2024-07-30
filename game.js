@@ -231,9 +231,13 @@ function showIntermediateQuestion(questions, index, repetition = 0) {
         const question = questions[index];
         if (repetition < 3) {
             displayMessage(`${question.question} = ${question.answer}`, true);
-            // ... שאר הקוד נשאר ללא שינוי
+            setTimeout(() => {
+                showIntermediateQuestion(questions, index, repetition + 1);
+            }, 2000); // מציג כל חזרה למשך 2 שניות
         } else {
-            showIntermediateQuestion(questions, index + 1);
+            setTimeout(() => {
+                showIntermediateQuestion(questions, index + 1, 0);
+            }, 1000); // עובר לשאלה הבאה אחרי שנייה
         }
     } else {
         displayMessage("סיימנו את שלב הביניים. עוברים לשלב האחרון.");
