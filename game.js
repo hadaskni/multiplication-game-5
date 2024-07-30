@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+});
 
 function showQuestion() {
     console.log("Showing question, current question:", currentQuestion);
