@@ -27,6 +27,10 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log("Virtual keyboard element:", virtualKeyboard);
     console.log("Virtual keyboard display:", window.getComputedStyle(virtualKeyboard).display);
 
+    // קוד להצגת המקלדת
+    virtualKeyboard.style.display = 'grid'; // או 'flex', תלוי בעיצוב שלך
+    console.log("Virtual keyboard display after setting:", virtualKeyboard.style.display);
+
     startGame();
 
     // מונע את הופעת המקלדת של המכשיר כאשר לוחצים על ה-input
@@ -34,6 +38,23 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
         this.blur();
     });
+
+        // פונקציה להצגת המקלדה הווירטואלית
+    function showVirtualKeyboard() {
+        if (window.innerWidth <= 600) {
+            virtualKeyboard.style.display = 'grid'; // או 'flex'
+        } else {
+            virtualKeyboard.style.display = 'none';
+        }
+        console.log("Virtual keyboard display in showVirtualKeyboard:", virtualKeyboard.style.display);
+    }
+
+    // קריאה ראשונית לפונקציה
+    showVirtualKeyboard();
+
+    // הוספת מאזין אירועים לשינוי גודל החלון
+    window.addEventListener('resize', showVirtualKeyboard);
+});
 });
 
     virtualKeyboard.addEventListener('click', function(event) {
