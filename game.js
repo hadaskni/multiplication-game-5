@@ -237,13 +237,13 @@ function showIntermediateQuestion(questions, index, repetition = 0) {
                 setTimeout(() => {
                     // קורא לפונקציה שוב אחרי חצי שנייה
                     showIntermediateQuestion(questions, index, repetition + 1);
-                }, 500);
+                }, 700);
             }, 3000); // מציג כל חזרה למשך 3 שניות
         } else {
             // עובר לשאלה הבאה
             setTimeout(() => {
                 showIntermediateQuestion(questions, index + 1, 0);
-            }, 500);
+            }, 700);
         }
     } else {
         displayMessage("סיימנו את שלב הביניים. עוברים לשלב האחרון.");
