@@ -52,7 +52,6 @@ document.addEventListener('DOMContentLoaded', function() {
         virtualKeyboard.addEventListener('click', function(event) {
             if (event.target.tagName === 'BUTTON') {
                 const value = event.target.getAttribute('data-value');
-
                  
                 switch(value) {
                     case 'clear':
@@ -66,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         });       
-        } else {
+    } else {
         console.error("Virtual keyboard element not found!");
     }
     
