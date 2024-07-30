@@ -30,6 +30,7 @@ let wrongAnswers = [];
 let currentQuestion = 0;
 let currentWrongAnswer = 0;
 let wrongAnswersQueue = [];
+let consecutiveTimeouts = 0;
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log("DOM loaded");
@@ -139,6 +140,7 @@ function startGame() {
     multiplicationTable = [];
     wrongAnswers = [];
     currentQuestion = 0;
+     consecutiveTimeouts = 0;  // איפוס המונה
     const multiple = 5; // או כל מספר אחר שתרצה
     for (let i = 1; i <= 10; i++) {
         multiplicationTable.push({
@@ -160,10 +162,32 @@ function submitAnswer() {
     clearTimeout(timer);
     const answerInput = document.getElementById('answer-input');
     const answer = answerInput.value;
-    if (currentQuestion < multiplicationTable.length) {
-        checkAnswer(answer);
+    if (answer === '') {  // אם אין תשובה, כנראה שהזמן עבר
+        consecutiveTimeouts++;
+        if (consecutiveTimeouts >= 3) {
+            endGame("המשחק הסתיים כי לא הוקלדה תשובה 3 פעמים רצופות.");
+            return;
+        }
+        wrongSound.play();
+        displayMessage("הזמן עבר! נסה שוב.", false);
+        if (currentQuestion < multiplicationTable.length) {
+            wrongAnswers.push(multiplicationTable[currentQuestion]);
+        }
+        setTimeout(() => {
+            currentQuestion++;
+            if (currentQuestion < multiplicationTable.length) {
+                showQuestion();
+            } else {
+                startIntermediatePhase();
+            }
+        }, 2000);
     } else {
-        checkWrongAnswer(answer);
+        consecutiveTimeouts = 0;  // איפוס המונה אם המשתמש הקליד תשובה
+        if (currentQuestion < multiplicationTable.length) {
+            checkAnswer(answer);
+        } else {
+            checkWrongAnswer(answer);
+        }
     }
     answerInput.value = '';
     answerInput.blur();
@@ -273,6 +297,7 @@ function startIntermediatePhase() {
 
 function startSecondPhase() {
     displayMessage("מתחילים את השלב השלישי - תרגול השגיאות");
+    consecutiveTimeouts = 0;  // איפוס המונה
     if (wrongAnswers.length > 0) {
         wrongAnswersQueue = [];
         for (let i = 0; i < wrongAnswers.length; i++) {
@@ -385,6 +410,12 @@ function adjustFeedbackSize() {
             if (fontSize <= 12) break;
         }
     }
+}
+
+function endGame(message) {
+    displayMessage(message, false);
+    document.getElementById('input-container').style.display = 'none';
+    // כאן אפשר להוסיף כל לוגיקה נוספת שצריכה לקרות בסיום המשחק
 }
 
 
