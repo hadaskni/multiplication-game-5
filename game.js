@@ -36,6 +36,23 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+    virtualKeyboard.addEventListener('click', function(event) {
+        if (event.target.tagName === 'BUTTON') {
+            const value = event.target.getAttribute('data-value');
+            
+            switch(value) {
+                case 'clear':
+                    clearAnswer();
+                    break;
+                case 'submit':
+                    submitAnswer();
+                    break;
+                default:
+                    addNumber(value);
+            }
+        }
+    });
+});
 function showQuestion() {
     if (currentQuestion < multiplicationTable.length) {
         const question = multiplicationTable[currentQuestion].question;
