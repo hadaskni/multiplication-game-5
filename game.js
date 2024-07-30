@@ -22,9 +22,14 @@ let currentWrongAnswer = 0;
 let wrongAnswersQueue = [];
 
 document.addEventListener('DOMContentLoaded', function() {
+    console.log("DOM loaded");
+    const virtualKeyboard = document.getElementById('virtual-keyboard');
+    console.log("Virtual keyboard element:", virtualKeyboard);
+    console.log("Virtual keyboard display:", window.getComputedStyle(virtualKeyboard).display);
+
     startGame();
 
-        // מונע את הופעת המקלדת של המכשיר כאשר לוחצים על ה-input
+    // מונע את הופעת המקלדת של המכשיר כאשר לוחצים על ה-input
     document.getElementById('answer-input').addEventListener('focus', function(e) {
         e.preventDefault();
         this.blur();
@@ -292,3 +297,7 @@ function showVirtualKeyboard() {
 // קריאה לפונקציה בטעינת הדף ובשינוי גודל החלון
 window.addEventListener('load', showVirtualKeyboard);
 window.addEventListener('resize', showVirtualKeyboard);
+
+console.log("addNumber function:", typeof addNumber);
+console.log("clearAnswer function:", typeof clearAnswer);
+console.log("submitAnswer function:", typeof submitAnswer);
