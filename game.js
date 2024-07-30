@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             console.error("Answer input element not found!");
         }
-        });
+    });
 
 function showQuestion() {
     console.log("Showing question, current question:", currentQuestion);
@@ -296,7 +296,7 @@ function checkWrongAnswer(userAnswer) {
 console.log("JavaScript file loaded");
 
 // קריאה אוטומטית לפונקציית startGame בטעינת הדף
-window.onload = function() {
+window.addEventListener('load', function() {
     console.log("Page loaded, starting game");
     startGame();
 };
@@ -332,11 +332,3 @@ function clearAnswer() {
     answerInput.value = '';
 }
 
-function showVirtualKeyboard() {
-  const virtualKeyboard = document.getElementById('virtual-keyboard');
-  if (window.innerWidth <= 600) {
-    virtualKeyboard.style.display = 'grid';
-  } else {
-    virtualKeyboard.style.display = 'none';
-  }
-}
