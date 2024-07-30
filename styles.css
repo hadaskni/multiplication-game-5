@@ -187,21 +187,29 @@ body {
   cursor: pointer;
 }
 
-    .feedback-message {
-    font-size: 24px;
+ .feedback-message {
+    font-size: 36px;
     font-weight: bold;
     color: #333;
-    padding: 15px;
-    margin: 10px 0;
+    background-color: #f9f9f9;
     border-radius: 10px;
-    background-color: #f0f0f0;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    width: 80%;
+    max-width: 300px;
+    height: 150px;
+    margin: 10px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    text-align: center;
 }
 
-/* הגדלת הגודל עוד יותר במסכים קטנים */
 @media (max-width: 600px) {
     .feedback-message {
         font-size: 28px;
-        padding: 20px;
+        width: 90%;
+        height: 120px;
     }
+}
 }
