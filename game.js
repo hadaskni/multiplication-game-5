@@ -299,7 +299,7 @@ console.log("JavaScript file loaded");
 window.addEventListener('load', function() {
     console.log("Page loaded, starting game");
     startGame();
-};
+});
 
 // פונקציה לערבוב מערך (אלגוריתם Fisher-Yates)
 function shuffleArray(array) {
