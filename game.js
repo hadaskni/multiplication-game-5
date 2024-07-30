@@ -279,3 +279,16 @@ function addNumber(num) {
 function clearAnswer() {
   document.getElementById('answer-input').value = '';
 }
+
+function showVirtualKeyboard() {
+  const virtualKeyboard = document.getElementById('virtual-keyboard');
+  if (window.innerWidth <= 600) {
+    virtualKeyboard.style.display = 'grid';
+  } else {
+    virtualKeyboard.style.display = 'none';
+  }
+}
+
+// קריאה לפונקציה בטעינת הדף ובשינוי גודל החלון
+window.addEventListener('load', showVirtualKeyboard);
+window.addEventListener('resize', showVirtualKeyboard);
