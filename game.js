@@ -206,6 +206,10 @@ function displayMessage(message, isFlashcard = false) {
     }
     
     gameArea.appendChild(messageElement);
+
+    if (!isFlashcard) {
+        setTimeout(adjustFeedbackSize, 0);
+    }
 }
 
 function showIntermediateQuestion(questions, index, repetition = 0) {
@@ -331,4 +335,18 @@ function clearAnswer() {
     const answerInput = document.getElementById('answer-input');
     answerInput.value = '';
 }
+
+function adjustFeedbackSize() {
+    const feedbackElement = document.querySelector('.feedback-message');
+    if (feedbackElement) {
+        let fontSize = 36;
+        feedbackElement.style.fontSize = `${fontSize}px`;
+        while (feedbackElement.scrollWidth > feedbackElement.offsetWidth || feedbackElement.scrollHeight > feedbackElement.offsetHeight) {
+            fontSize--;
+            feedbackElement.style.fontSize = `${fontSize}px`;
+            if (fontSize <= 12) break;
+        }
+    }
+}
+
 
