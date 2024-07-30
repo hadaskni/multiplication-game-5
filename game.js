@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 function showQuestion() {
+    console.log("Showing question, current question:", currentQuestion);
     if (currentQuestion < multiplicationTable.length) {
         const question = multiplicationTable[currentQuestion].question;
         // פיצול התרגיל למרכיביו
