@@ -24,37 +24,47 @@ let wrongAnswersQueue = [];
 document.addEventListener('DOMContentLoaded', function() {
     console.log("DOM loaded");
     const virtualKeyboard = document.getElementById('virtual-keyboard');
-    console.log("Virtual keyboard element:", virtualKeyboard);
-    console.log("Virtual keyboard display:", window.getComputedStyle(virtualKeyboard).display);
+    
+    if (virtualKeyboard) {
+        console.log("Virtual keyboard element:", virtualKeyboard);
+        console.log("Virtual keyboard display:", window.getComputedStyle(virtualKeyboard).display);
 
-    // קוד להצגת המקלדת
-    virtualKeyboard.style.display = 'grid'; // או 'flex', תלוי בעיצוב שלך
-    console.log("Virtual keyboard display after setting:", virtualKeyboard.style.display);
+        // קוד להצגת המקלדת
+        virtualKeyboard.style.display = 'grid'; // או 'flex', תלוי בעיצוב שלך
+        console.log("Virtual keyboard display after setting:", virtualKeyboard.style.display);
+      
+        // פונקציה להצגת המקלדה הווירטואלית
+        function showVirtualKeyboard() {
+            if (window.innerWidth <= 600) {
+                virtualKeyboard.style.display = 'grid'; // או 'flex'
+            } else {
+                virtualKeyboard.style.display = 'none';
+            }
+            console.log("Virtual keyboard display in showVirtualKeyboard:", virtualKeyboard.style.display);
+        }
 
-    startGame();
+          // קריאה ראשונית לפונקציה
+        showVirtualKeyboard();
+    
+        // הוספת מאזין אירועים לשינוי גודל החלון
+        window.addEventListener('resize', showVirtualKeyboard);
+        } else {
+        console.error("Virtual keyboard element not found!");
+    }
+    
+        startGame();
 
     // מונע את הופעת המקלדת של המכשיר כאשר לוחצים על ה-input
-    document.getElementById('answer-input').addEventListener('focus', function(e) {
-        e.preventDefault();
-        this.blur();
-    });
-
-        // פונקציה להצגת המקלדה הווירטואלית
-    function showVirtualKeyboard() {
-        if (window.innerWidth <= 600) {
-            virtualKeyboard.style.display = 'grid'; // או 'flex'
+       const answerInput = document.getElementById('answer-input');
+        if (answerInput) {
+            answerInput.addEventListener('focus', function(e) {
+                e.preventDefault();
+                this.blur();
+            });
         } else {
-            virtualKeyboard.style.display = 'none';
+            console.error("Answer input element not found!");
         }
-        console.log("Virtual keyboard display in showVirtualKeyboard:", virtualKeyboard.style.display);
-    }
-
-    // קריאה ראשונית לפונקציה
-    showVirtualKeyboard();
-
-    // הוספת מאזין אירועים לשינוי גודל החלון
-    window.addEventListener('resize', showVirtualKeyboard);
-});
+    });
 });
 
     virtualKeyboard.addEventListener('click', function(event) {
