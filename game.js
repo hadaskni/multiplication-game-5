@@ -264,3 +264,11 @@ document.addEventListener('touchstart', function() {
   function clearAnswer() {
     document.getElementById('answer-input').value = '';
   }
+
+function addNumber(num) {
+  document.getElementById('answer-input').value += num;
+}
+
+function clearAnswer() {
+  document.getElementById('answer-input').value = '';
+}
